@@ -8,8 +8,8 @@ object ActorCapabilities extends App {
   class SimpleActor extends Actor {
 
     override def receive: Receive = {
-      case "Hi!" => sender() ! "Hello, there!"
-      case message: String => println(s"[${self.path}] I have received $message") //self=context.self
+      case "Hi!" => sender ! "Hello, there!"
+      case message: String => println(s"[${self.path}] I have received $message")  //self=context.self
       case number: Int => println(s"[${self.path}] I have received a NUMBER $number")
       case SpecialMessage(contents) => println(s"[${self.path}] I have received something SPECIAL: $contents")
       case SendMessageToYourself(content) => self ! content
